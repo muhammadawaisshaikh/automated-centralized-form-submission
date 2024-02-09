@@ -24,18 +24,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
 const formData = {
-  firstName: ref(''),
-  lastName: ref(''),
-  street: ref(''),
-  housenr: ref(''),
-  zipcode: ref(''),
-  city: ref('')
+  firstName: '',
+  lastName: '',
+  street: '',
+  housenr: '',
+  zipcode: '',
+  city: ''
 };
 
 const submitForm = () => {
-  // Submit form logic here
+  console.log(formData);
 };
 </script>

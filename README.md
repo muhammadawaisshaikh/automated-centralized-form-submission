@@ -2,6 +2,8 @@
 
 POC for Automated Form Submission 🤖 Leveraging VueJS and Python (Flask, Selenium), along with seamless submission log storage in Supabase we've achieved efficient automation 💻
 
+![Demo Image](demo.png)
+
 ## CURL for Automated Form Filling Execution (Python, Flask, Selenium)
 curl --location 'http://127.0.0.1:5000/execute' \
 --header 'Content-Type: application/json' \

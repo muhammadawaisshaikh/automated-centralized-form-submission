@@ -43,6 +43,7 @@ const submitForm = async () => {
       .insert(formData.value);
     
     if (error) {
+      alert('Error submitting form data');
       console.error('Error submitting form data:', error.message);
       return;
     }

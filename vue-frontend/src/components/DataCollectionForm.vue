@@ -24,16 +24,30 @@
 </template>
 
 <script setup>
-const formData = {
+import { ref } from 'vue';
+import axios from 'axios';
+
+const formData = ref({
   firstName: '',
   lastName: '',
   street: '',
   housenr: '',
   zipcode: '',
   city: ''
-};
+});
 
 const submitForm = () => {
-  console.log(formData);
+  console.log(formData.value);
+
+  // consume API to hit Python Selenium script to automate the form filling 
+  axios.post('http://127.0.0.1:5000/execute', formData.value)
+    .then(response => {
+      console.log(response);
+      alert('Data sent Successfully!');
+    })
+    .catch(error => {
+      console.error(error);
+      alert(error);
+    });
 };
 </script>

@@ -6,6 +6,7 @@
       <v-btn text to="/">Home</v-btn>
       <v-btn text to="/form-submissions">Form Submissions</v-btn>
       <v-btn text to="/data-collection-form">Data Collection Form</v-btn>
+      <v-btn text to="/test-form-01">Test Form 01</v-btn>
     </v-app-bar>
     <router-view></router-view>
   </v-app>

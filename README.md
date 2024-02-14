@@ -8,14 +8,17 @@ POC for Automated Form Submission 🤖 Leveraging VueJS and Python (Flask, Selen
 
 ### Data collection form: 
 When submitted, it sends the form data to a server-side endpoint (Python Script) using Axios. Additionally, it inserts the form data into a Supabase Database for data logging purposes. It provides feedback to the user via alerts and console logs on errors if any coming from Python Script.
+
 ![Data collection form](demo-images/data-c-image.png)
 
 ### From Submissions:
 This component fetches data from a Supabase Database named 'data-logs' when the component is mounted and displays the fetched data in a table format. It provides a simple and efficient way to retrieve and present data from a Supabase database for every submission users made in a Vue.js application.
+
 ![From Submissions](demo-images/image.png)
 
 ### TestForm01:
 This Component is for testing and it Automates the form submission using python Selenium, when user submits the form using "Data collection form" we are sending all data to pyhton endpoint built with Flask to receive the data coming from vue Frontend App. and then Python script is opening "TestForm01" component and automatically fills and submits the data came from Python API response.
+
 ![TestForm01](demo-images/image-1.png)
 
 ## Backend - Python, Flask, Selenium
@@ -39,3 +42,8 @@ curl --location 'http://127.0.0.1:5000/execute' \
     "zipcode": "78998",
     "city": "Hamburg"
 }'
+
+### Database - SUPABASE
+Supabase Database named 'data-logs for storing the data as callback when consuming python BE scripts
+
+![Database - SUPABASE](demo-images/sb-image.png)

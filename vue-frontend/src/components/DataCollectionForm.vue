@@ -24,8 +24,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import axios from 'axios';
+const supabase = inject('supabase');
 
 const formData = ref({
   firstName: '',
@@ -41,9 +42,27 @@ const submitForm = () => {
 
   // consume API to hit Python Selenium script to automate the form filling 
   axios.post('http://127.0.0.1:5000/execute', formData.value)
-    .then(response => {
+    .then(async response => {
       console.log(response);
-      alert('Data sent Successfully!');
+      
+      try {
+        const { data, error } = await supabase
+          .from('data-logs')
+          .insert(formData.value);
+        
+        if (error) {
+          alert('Error submitting form data');
+          console.error('Error submitting form data:', error.message);
+          return;
+        }
+
+        alert('Form data submitted successfully');
+        console.log('Form data submitted successfully:', data);
+      } 
+      catch (error) {
+        alert('Error submitting form data');
+        console.error('Error submitting form data:', error.message);
+      }
     })
     .catch(error => {
       console.error(error);

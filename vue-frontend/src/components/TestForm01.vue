@@ -24,9 +24,8 @@
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
+import { ref } from 'vue';
 
-const supabase = inject('supabase');
 const formData = ref({
   firstName: '',
   lastName: '',
@@ -37,23 +36,6 @@ const formData = ref({
 });
 
 const submitForm = async () => {
-  try {
-    const { data, error } = await supabase
-      .from('data-logs')
-      .insert(formData.value);
-    
-    if (error) {
-      alert('Error submitting form data');
-      console.error('Error submitting form data:', error.message);
-      return;
-    }
-
-    alert('Form data submitted successfully');
-    console.log('Form data submitted successfully:', data);
-  } 
-  catch (error) {
-    alert('Error submitting form data');
-    console.error('Error submitting form data:', error.message);
-  }
+  console.log('Automated form filled successfully!', formData.value);
 };
 </script>

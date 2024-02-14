@@ -24,19 +24,35 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 
-  const formData = ref({
-    firstName: '',
-    lastName: '',
-    street: '',
-    housenr: '',
-    zipcode: '',
-    city: ''
-  });
+const supabase = inject('supabase');
+const formData = ref({
+  firstName: '',
+  lastName: '',
+  street: '',
+  housenr: '',
+  zipcode: '',
+  city: ''
+});
 
-  const submitForm = () => {
-    console.log(formData);
-    alert(JSON.stringify(formData));
-  };
+const submitForm = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('data-logs')
+      .insert(formData.value);
+    
+    if (error) {
+      console.error('Error submitting form data:', error.message);
+      return;
+    }
+
+    alert('Form data submitted successfully');
+    console.log('Form data submitted successfully:', data);
+  } 
+  catch (error) {
+    alert('Error submitting form data');
+    console.error('Error submitting form data:', error.message);
+  }
+};
 </script>

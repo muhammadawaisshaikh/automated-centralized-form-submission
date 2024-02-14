@@ -30,26 +30,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, inject } from 'vue';
+const supabase = inject('supabase');
 
-const data = ref([
-  {
-    id: 1,
-    firstName: 'Dietrich',
-    lastName: 'Coding',
-    street: '324 Sample Street',
-    housenr: '12',
-    zipcode: '89978',
-    city: 'Hamburg'
-  },
-  {
-    id: 2,
-    firstName: 'Dietrich',
-    lastName: 'Coding',
-    street: '324 Sample Street',
-    housenr: '12',
-    zipcode: '89978',
-    city: 'Hamburg'
-  },
-]);
+const data = ref([]);
+
+// Fetch data from Supabase
+const fetchData = async () => {
+  try {
+    const { data: records, error } = await supabase
+      .from('data-logs')
+      .select('*');
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    data.value = records;
+  } catch (error) {
+    console.error('Error fetching data from Supabase:', error.message);
+  }
+};
+
+// Fetch data when the component is mounted
+onMounted(fetchData);
 </script>
